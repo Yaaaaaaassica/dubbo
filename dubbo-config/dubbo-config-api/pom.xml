@@ -51,11 +51,6 @@
         </dependency>
         <dependency>
             <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-rpc-injvm</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-filter-validation</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
@@ -64,22 +59,10 @@
             <artifactId>dubbo-filter-cache</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <!-- FIXME, we shouldn't rely on these modules, even in test scope -->
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-rpc-rmi</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-remoting-netty4</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-registry-multicast</artifactId>
             <version>${project.parent.version}</version>
             <scope>test</scope>
         </dependency>

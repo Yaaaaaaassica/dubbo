@@ -17,9 +17,7 @@
 package org.apache.dubbo.rpc.protocol.hessian;
 
 import org.apache.dubbo.common.URL;
-import org.apache.dubbo.remoting.http.HttpBinder;
-import org.apache.dubbo.remoting.http.HttpHandler;
-import org.apache.dubbo.remoting.http.HttpServer;
+
 import org.apache.dubbo.rpc.RpcContext;
 import org.apache.dubbo.rpc.RpcException;
 import org.apache.dubbo.rpc.protocol.AbstractProxyProtocol;
@@ -33,9 +31,7 @@ import com.caucho.hessian.client.HessianProxyFactory;
 import com.caucho.hessian.io.HessianMethodSerializationException;
 import com.caucho.hessian.server.HessianSkeleton;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
