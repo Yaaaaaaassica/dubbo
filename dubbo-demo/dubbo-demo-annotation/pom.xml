@@ -38,6 +38,7 @@
         <module>dubbo-demo-annotation-consumer</module>
     </modules>
 
+
     <build>
         <plugins>
             <plugin>

@@ -428,7 +428,7 @@ public class ReferenceConfig<T> extends AbstractReferenceConfig {
                 isJvmRefer = false;
             } else {
                 // by default, reference local service if there is
-                isJvmRefer = true;
+                isJvmRefer = false;
             }
         } else {
             isJvmRefer = isInjvm();
