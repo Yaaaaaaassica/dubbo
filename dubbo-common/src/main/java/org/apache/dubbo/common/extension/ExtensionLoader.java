@@ -19,8 +19,8 @@ package org.apache.dubbo.common.extension;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.extension.support.ActivateComparator;
-import org.apache.dubbo.common.logger.Logger;
-import org.apache.dubbo.common.logger.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.dubbo.common.utils.ArrayUtils;
 import org.apache.dubbo.common.utils.ClassUtils;
 import org.apache.dubbo.common.utils.CollectionUtils;
@@ -483,7 +483,7 @@ public class ExtensionLoader<T> {
                         try {
 
                             instance = createAdaptiveExtension();
-                            log.info("[ SPI ] 获取拓展类 {}",instance);
+                            logger.info("[ SPI ] 获取拓展类 {}",instance);
                             cachedAdaptiveInstance.set(instance);
                         } catch (Throwable t) {
                             createAdaptiveInstanceError = t;

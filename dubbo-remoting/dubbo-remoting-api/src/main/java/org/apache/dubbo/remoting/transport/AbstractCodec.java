@@ -20,8 +20,8 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 import org.apache.dubbo.common.URL;
-import org.apache.dubbo.common.logger.Logger;
-import org.apache.dubbo.common.logger.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.dubbo.common.serialize.Serialization;
 import org.apache.dubbo.common.utils.NetUtils;
 import org.apache.dubbo.remoting.Channel;
@@ -49,7 +49,7 @@ public abstract class AbstractCodec implements Codec2 {
         if (payload > 0 && size > payload) {
             ExceedPayloadLimitException e = new ExceedPayloadLimitException(
                 "Data length too large: " + size + ", max payload: " + payload + ", channel: " + channel);
-            logger.error(e);
+            logger.error(e.getMessage());
             throw e;
         }
     }

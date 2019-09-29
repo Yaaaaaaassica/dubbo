@@ -16,8 +16,8 @@
  */
 package org.apache.dubbo.common.serialize.kryo;
 
-import org.apache.dubbo.common.logger.Logger;
-import org.apache.dubbo.common.logger.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.dubbo.common.serialize.kryo.utils.ReflectionUtils;
 
 import com.esotericsoftware.kryo.Kryo;

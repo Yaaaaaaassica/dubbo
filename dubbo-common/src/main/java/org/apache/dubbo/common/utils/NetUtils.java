@@ -18,8 +18,8 @@ package org.apache.dubbo.common.utils;
 
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.config.ConfigurationUtils;
-import org.apache.dubbo.common.logger.Logger;
-import org.apache.dubbo.common.logger.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.Inet4Address;
@@ -252,7 +252,7 @@ public class NetUtils {
                 return addressOp.get();
             }
         } catch (Throwable e) {
-            logger.warn(e);
+           // logger.warn(e);
         }
 
         try {
@@ -272,7 +272,7 @@ public class NetUtils {
                             Optional<InetAddress> addressOp = toValidAddress(addresses.nextElement());
                             if (addressOp.isPresent()) {
                                 try {
-                                    if(addressOp.get().isReachable(100)){
+                                    if (addressOp.get().isReachable(100)) {
                                         return addressOp.get();
                                     }
                                 } catch (IOException e) {
@@ -280,15 +280,15 @@ public class NetUtils {
                                 }
                             }
                         } catch (Throwable e) {
-                            logger.warn(e);
+                            //logger.warn(e.getMessage());
                         }
                     }
                 } catch (Throwable e) {
-                    logger.warn(e);
+                    //logger.warn(e);
                 }
             }
         } catch (Throwable e) {
-            logger.warn(e);
+            //logger.warn(e);
         }
         return localAddress;
     }
@@ -372,7 +372,7 @@ public class NetUtils {
                 InetAddress address = (InetAddress) addresses.nextElement();
                 if (preferIpv6 && address instanceof Inet6Address) {
                     try {
-                        if(address.isReachable(100)){
+                        if (address.isReachable(100)) {
                             multicastSocket.setInterface(address);
                             interfaceSet = true;
                             break;
@@ -382,7 +382,7 @@ public class NetUtils {
                     }
                 } else if (!preferIpv6 && address instanceof Inet4Address) {
                     try {
-                        if(address.isReachable(100)){
+                        if (address.isReachable(100)) {
                             multicastSocket.setInterface(address);
                             interfaceSet = true;
                             break;

@@ -17,8 +17,8 @@
 package org.apache.dubbo.remoting.telnet.codec;
 
 import org.apache.dubbo.common.URL;
-import org.apache.dubbo.common.logger.Logger;
-import org.apache.dubbo.common.logger.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.dubbo.common.utils.CollectionUtils;
 import org.apache.dubbo.common.utils.StringUtils;
 import org.apache.dubbo.remoting.Channel;
@@ -188,7 +188,7 @@ public class TelnetCodec extends TransportCodec {
         for (Object command : EXIT) {
             if (isEquals(message, (byte[]) command)) {
                 if (logger.isInfoEnabled()) {
-                    logger.info(new Exception("Close channel " + channel + " on exit command: " + Arrays.toString((byte[]) command)));
+                    logger.info(new Exception("Close channel " + channel + " on exit command: " + Arrays.toString((byte[]) command)).getMessage());
                 }
                 channel.close();
                 return null;
@@ -247,7 +247,7 @@ public class TelnetCodec extends TransportCodec {
         for (Object command : EXIT) {
             if (isEquals(message, (byte[]) command)) {
                 if (logger.isInfoEnabled()) {
-                    logger.info(new Exception("Close channel " + channel + " on exit command " + command));
+                    logger.info(new Exception("Close channel " + channel + " on exit command " + command).getMessage());
                 }
                 channel.close();
                 return null;

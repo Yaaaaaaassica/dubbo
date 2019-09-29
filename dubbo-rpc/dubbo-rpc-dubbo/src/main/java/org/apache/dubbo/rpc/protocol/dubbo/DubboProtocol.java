@@ -295,7 +295,7 @@ public class DubboProtocol extends AbstractProtocol {
             if (stubServiceMethods == null || stubServiceMethods.length() == 0) {
                 if (logger.isWarnEnabled()) {
                     logger.warn(new IllegalStateException("consumer [" + url.getParameter(INTERFACE_KEY) +
-                            "], has set stubproxy support event ,but no stub methods founded."));
+                            "], has set stubproxy support event ,but no stub methods founded.").getMessage());
                 }
 
             } else {

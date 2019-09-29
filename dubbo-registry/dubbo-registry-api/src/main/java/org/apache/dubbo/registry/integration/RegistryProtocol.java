@@ -20,8 +20,8 @@ import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.URLBuilder;
 import org.apache.dubbo.common.config.ConfigurationUtils;
 import org.apache.dubbo.common.extension.ExtensionLoader;
-import org.apache.dubbo.common.logger.Logger;
-import org.apache.dubbo.common.logger.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.dubbo.common.utils.CollectionUtils;
 import org.apache.dubbo.common.utils.NamedThreadFactory;
 import org.apache.dubbo.common.utils.StringUtils;
@@ -279,7 +279,7 @@ public class RegistryProtocol implements Protocol {
         String key = getCacheKey(originInvoker);
         final ExporterChangeableWrapper<T> exporter = (ExporterChangeableWrapper<T>) bounds.get(key);
         if (exporter == null) {
-            logger.warn(new IllegalStateException("error state, exporter should not be null"));
+            logger.warn(new IllegalStateException("error state, exporter should not be null").getMessage());
         } else {
             final Invoker<T> invokerDelegate = new InvokerDelegate<T>(originInvoker, newInvokerUrl);
             exporter.setExporter(protocol.export(invokerDelegate));
@@ -550,7 +550,7 @@ public class RegistryProtocol implements Protocol {
             String key = getCacheKey(originInvoker);
             ExporterChangeableWrapper<?> exporter = bounds.get(key);
             if (exporter == null) {
-                logger.warn(new IllegalStateException("error state, exporter should not be null"));
+                logger.warn(new IllegalStateException("error state, exporter should not be null").getMessage());
                 return;
             }
             //The current, may have been merged many times

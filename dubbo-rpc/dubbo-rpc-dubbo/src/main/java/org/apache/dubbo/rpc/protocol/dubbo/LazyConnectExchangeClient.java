@@ -18,8 +18,8 @@ package org.apache.dubbo.rpc.protocol.dubbo;
 
 import org.apache.dubbo.common.Parameters;
 import org.apache.dubbo.common.URL;
-import org.apache.dubbo.common.logger.Logger;
-import org.apache.dubbo.common.logger.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.dubbo.common.utils.NetUtils;
 import org.apache.dubbo.remoting.ChannelHandler;
 import org.apache.dubbo.remoting.RemotingException;
@@ -120,7 +120,7 @@ final class LazyConnectExchangeClient implements ExchangeClient {
     private void warning() {
         if (requestWithWarning) {
             if (warningcount.get() % warning_period == 0) {
-                logger.warn(new IllegalStateException("safe guard client , should not be called ,must have a bug."));
+                logger.warn(new IllegalStateException("safe guard client , should not be called ,must have a bug.").getMessage());
             }
             warningcount.incrementAndGet();
         }

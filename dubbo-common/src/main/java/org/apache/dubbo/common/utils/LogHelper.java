@@ -16,7 +16,7 @@
  */
 package org.apache.dubbo.common.utils;
 
-import org.apache.dubbo.common.logger.Logger;
+import org.slf4j.Logger;
 
 public class LogHelper {
 
@@ -39,7 +39,7 @@ public class LogHelper {
         }
 
         if (logger.isTraceEnabled()) {
-            logger.trace(throwable);
+           // logger.trace(throwable);
         }
     }
 
@@ -69,7 +69,7 @@ public class LogHelper {
         }
 
         if (logger.isDebugEnabled()) {
-            logger.debug(e);
+           // logger.debug(e);
         }
     }
 
@@ -99,7 +99,7 @@ public class LogHelper {
         }
 
         if (logger.isInfoEnabled()) {
-            logger.info(e);
+            logger.info(e.getMessage());
         }
     }
 
@@ -139,7 +139,7 @@ public class LogHelper {
         }
 
         if (logger.isWarnEnabled()) {
-            logger.warn(e);
+           // logger.warn(e);
         }
     }
 
@@ -149,7 +149,7 @@ public class LogHelper {
         }
 
         if (logger.isErrorEnabled()) {
-            logger.error(e);
+          //  logger.error(e);
         }
     }
 
