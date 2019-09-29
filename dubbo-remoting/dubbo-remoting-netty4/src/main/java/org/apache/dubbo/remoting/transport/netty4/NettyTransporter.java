@@ -16,22 +16,28 @@
  */
 package org.apache.dubbo.remoting.transport.netty4;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.remoting.ChannelHandler;
 import org.apache.dubbo.remoting.Client;
 import org.apache.dubbo.remoting.RemotingException;
 import org.apache.dubbo.remoting.Server;
 import org.apache.dubbo.remoting.Transporter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Default extension of {@link Transporter} using netty4.x.
  */
+
 public class NettyTransporter implements Transporter {
 
     public static final String NAME = "netty";
+    private static Logger logger = LoggerFactory.getLogger(NettyTransporter.class);
 
     @Override
     public Server bind(URL url, ChannelHandler listener) throws RemotingException {
+        logger.info("[start to bing dubbo] ..");
         return new NettyServer(url, listener);
     }
 

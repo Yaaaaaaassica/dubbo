@@ -176,6 +176,7 @@ public class NettyServer extends AbstractServer implements Server {
 
     @Override
     public Channel getChannel(InetSocketAddress remoteAddress) {
+
         return channels.get(NetUtils.toAddressString(remoteAddress));
     }
 

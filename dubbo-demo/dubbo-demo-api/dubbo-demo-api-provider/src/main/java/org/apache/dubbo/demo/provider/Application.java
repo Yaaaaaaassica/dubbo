@@ -24,6 +24,7 @@ import org.apache.dubbo.config.MonitorConfig;
 import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.config.ServiceConfig;
 import org.apache.dubbo.demo.DemoService;
+import org.apache.dubbo.demo.DemoService2;
 
 @Slf4j
 public class Application {
@@ -42,6 +43,17 @@ public class Application {
         service.setRef(new DemoServiceImpl());
         service.setScope("remote");
         service.export();
+
+        ServiceConfig<DemoServiceImpl2> service2 = new ServiceConfig<>();
+        service2.setApplication(new ApplicationConfig("dubbo-demo-api-provider"));
+        service2.setRegistry(new RegistryConfig("zookeeper://127.0.0.1:2181"));
+        service2.setInterface(DemoService2.class);
+        MonitorConfig monitorConfig2 = new MonitorConfig();
+        monitorConfig.setProtocol("register");
+        service2.setMonitor(monitorConfig);
+        service2.setRef(new DemoServiceImpl2());
+        service2.setScope("remote");
+        service2.export();
         System.in.read();
     }
 }

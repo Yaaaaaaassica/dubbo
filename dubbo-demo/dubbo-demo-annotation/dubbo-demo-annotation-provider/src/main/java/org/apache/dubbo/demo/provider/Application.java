@@ -39,12 +39,12 @@ public class Application {
 
     @Configuration
     @EnableDubbo(scanBasePackages = "org.apache.dubbo.demo.provider")
-    @PropertySource("classpath:/spring/dubbo-provider.properties")
+    @PropertySource("classpath:/spring/application.properties")
     static class ProviderConfiguration {
         @Bean
         public RegistryConfig registryConfig() {
             RegistryConfig registryConfig = new RegistryConfig();
-            registryConfig.setAddress("multicast://224.5.6.7:1234");
+            registryConfig.setAddress("zookeeper://127.0.0.1:2181");
             return registryConfig;
         }
     }

@@ -22,15 +22,21 @@ package org.apache.dubbo.demo.consumer.comp;
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.demo.DemoService;
 
+import org.apache.dubbo.demo.DemoService2;
 import org.springframework.stereotype.Component;
+
+import java.util.Random;
 
 @Component("demoServiceComponent")
 public class DemoServiceComponent implements DemoService {
     @Reference
     private DemoService demoService;
+    @Reference
+    private DemoService2 demoService2;
 
     @Override
     public String sayHello(String name) {
-        return demoService.sayHello(name);
+        return
+               new Random().nextBoolean()? demoService.sayHello(name): demoService2.sayHello(name);
     }
 }

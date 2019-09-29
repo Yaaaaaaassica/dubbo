@@ -18,33 +18,42 @@
  */
 package org.apache.dubbo.demo.consumer;
 
+import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.apache.dubbo.demo.DemoService;
 import org.apache.dubbo.demo.consumer.comp.DemoServiceComponent;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
+
+import java.util.concurrent.TimeUnit;
 
 public class Application {
     /**
      * In order to make sure multicast registry works, need to specify '-Djava.net.preferIPv4Stack=true' before
      * launch the application
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConsumerConfiguration.class);
         context.start();
         DemoService service = context.getBean("demoServiceComponent", DemoServiceComponent.class);
-        String hello = service.sayHello("world");
-        System.out.println("result :" + hello);
+       while (true){
+           String hello = service.sayHello("world");
+           System.out.println("result :" + hello);
+           TimeUnit.SECONDS.sleep(1);
+       }
+
     }
 
     @Configuration
     @EnableDubbo(scanBasePackages = "org.apache.dubbo.demo.consumer.comp")
-    @PropertySource("classpath:/spring/dubbo-consumer.properties")
+    @PropertySource("classpath:/spring/application.properties")
     @ComponentScan(value = {"org.apache.dubbo.demo.consumer.comp"})
     static class ConsumerConfiguration {
-
+        @Bean
+        public RegistryConfig registryConfig() {
+            RegistryConfig registryConfig = new RegistryConfig();
+            registryConfig.setAddress("zookeeper://127.0.0.1:2181");
+            return registryConfig;
+        }
     }
 }
