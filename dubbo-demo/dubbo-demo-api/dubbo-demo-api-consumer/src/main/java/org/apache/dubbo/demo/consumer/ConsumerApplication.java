@@ -16,32 +16,40 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.dubbo.demo.provider;
+package org.apache.dubbo.demo.consumer;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.MonitorConfig;
+import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.RegistryConfig;
-import org.apache.dubbo.config.ServiceConfig;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.demo.DemoService;
 
-@Slf4j
-public class Application {
+import java.util.concurrent.TimeUnit;
+
+public class ConsumerApplication {
     /**
      * In order to make sure multicast registry works, need to specify '-Djava.net.preferIPv4Stack=true' before
      * launch the application
      */
-    public static void main(String[] args) throws Exception {
-        ServiceConfig<DemoServiceImpl> service = new ServiceConfig<>();
-        service.setApplication(new ApplicationConfig("dubbo-demo-api-provider"));
-        service.setRegistry(new RegistryConfig("zookeeper://127.0.0.1:2181"));
-        service.setInterface(DemoService.class);
+    public static void main(String[] args) throws InterruptedException {
+        ReferenceConfig<DemoService> reference = new ReferenceConfig<>();
+        reference.setApplication(new ApplicationConfig("dubbo-demo-api-consumer"));
+        reference.setRegistry(new RegistryConfig("zookeeper://127.0.0.1:2181"));
+        reference.setInterface(DemoService.class);
+
         MonitorConfig monitorConfig = new MonitorConfig();
         monitorConfig.setProtocol("register");
-        service.setMonitor(monitorConfig);
-        service.setRef(new DemoServiceImpl());
-        service.setScope("remote");
-        service.export();
-        System.in.read();
+        reference.setMonitor(monitorConfig);
+
+        DemoService service = reference.get();
+        reference.setScope("remote");
+        while (true){
+            String message = service.sayHello("dubbo");
+            System.out.println(message);
+
+            TimeUnit.SECONDS.sleep(1);
+        }
+
     }
 }

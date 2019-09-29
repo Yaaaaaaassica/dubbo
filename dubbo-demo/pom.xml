@@ -33,6 +33,7 @@
         <module>dubbo-demo-interface</module>
         <module>dubbo-demo-annotation</module>
         <module>dubbo-demo-api</module>
+        <module>zk</module>
     </modules>
 
     <dependencyManagement>
