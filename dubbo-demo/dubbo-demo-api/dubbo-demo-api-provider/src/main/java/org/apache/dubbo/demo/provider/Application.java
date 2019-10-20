@@ -41,6 +41,8 @@ public class Application {
         monitorConfig.setProtocol("register");
         service.setMonitor(monitorConfig);
         service.setRef(new DemoServiceImpl());
+
+        // service.setMonitor("");
         service.setScope("remote");
         service.export();
 

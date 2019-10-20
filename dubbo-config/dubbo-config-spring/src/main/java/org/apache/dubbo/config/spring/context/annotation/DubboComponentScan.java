@@ -39,7 +39,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import(DubboComponentScanRegistrar.class)
+@Import(DubboComponentScanRegistrar.class) // import enable  dubbo 就会开启dubbo的配置
 public @interface DubboComponentScan {
 
     /**

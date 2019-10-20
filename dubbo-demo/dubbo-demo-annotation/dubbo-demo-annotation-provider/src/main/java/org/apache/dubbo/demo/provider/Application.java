@@ -34,6 +34,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ProviderConfiguration.class);
         context.start();
+
+
+        context.getBean("demoServiceImpl");
         System.in.read();
     }
 
