@@ -959,6 +959,9 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
     }
 
     public void setRef(T ref) {
+
+
+        logger.warn("Dubbo 注入 bean {}",ref);
         this.ref = ref;
     }
 

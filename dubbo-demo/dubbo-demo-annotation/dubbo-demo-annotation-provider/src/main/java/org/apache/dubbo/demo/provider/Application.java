@@ -37,7 +37,7 @@ public class Application {
 
 
         context.getBean("demoServiceImpl");
-        System.in.read();
+       // System.in.read();
     }
 
     @Configuration

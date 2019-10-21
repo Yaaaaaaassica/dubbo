@@ -120,6 +120,9 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
     public void afterPropertiesSet() throws Exception {
         if (getProvider() == null) {
             Map<String, ProviderConfig> providerConfigMap = applicationContext == null ? null : BeanFactoryUtils.beansOfTypeIncludingAncestors(applicationContext, ProviderConfig.class, false, false);
+
+            logger.warn("duubo ProviderConfig from spring {}", providerConfigMap);
+
             if (providerConfigMap != null && providerConfigMap.size() > 0) {
                 Map<String, ProtocolConfig> protocolConfigMap = applicationContext == null ? null : BeanFactoryUtils.beansOfTypeIncludingAncestors(applicationContext, ProtocolConfig.class, false, false);
                 if (CollectionUtils.isEmptyMap(protocolConfigMap)
@@ -151,8 +154,12 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
         }
         if (getApplication() == null
                 && (getProvider() == null || getProvider().getApplication() == null)) {
+
+
             Map<String, ApplicationConfig> applicationConfigMap = applicationContext == null ? null : BeanFactoryUtils.beansOfTypeIncludingAncestors(applicationContext, ApplicationConfig.class, false, false);
             if (applicationConfigMap != null && applicationConfigMap.size() > 0) {
+
+                logger.warn("duubo applicationConfigMap from spring {}", applicationConfigMap);
                 ApplicationConfig applicationConfig = null;
                 for (ApplicationConfig config : applicationConfigMap.values()) {
                     if (applicationConfig != null) {
@@ -314,6 +321,8 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
             }
         }
         if (!supportedApplicationListener) {
+
+            logger.warn("dubbo start 初始化");
             export();
         }
     }

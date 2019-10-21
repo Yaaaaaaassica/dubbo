@@ -107,6 +107,8 @@ public class ServiceAnnotationBeanPostProcessor implements BeanDefinitionRegistr
         Set<String> resolvedPackagesToScan = resolvePackagesToScan(packagesToScan);
 
         if (!CollectionUtils.isEmpty(resolvedPackagesToScan)) {
+
+            logger.info(" DUBBO bean facory post processor{} {}", packagesToScan, resolvedPackagesToScan);
             registerServiceBeans(resolvedPackagesToScan, registry);
         } else {
             if (logger.isWarnEnabled()) {
@@ -132,6 +134,7 @@ public class ServiceAnnotationBeanPostProcessor implements BeanDefinitionRegistr
 
         scanner.setBeanNameGenerator(beanNameGenerator);
 
+        logger.info("Dubbo Bean Factory {} 前置处理 bean 扫描包 service {}",this, Service.class);
         scanner.addIncludeFilter(new AnnotationTypeFilter(Service.class));
 
         /**
