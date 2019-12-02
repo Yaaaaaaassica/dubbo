@@ -111,6 +111,7 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
             if (logger.isInfoEnabled()) {
                 logger.info("The service ready on spring started. service: " + getInterface());
             }
+
             export();
         }
     }
@@ -314,6 +315,7 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
             }
         }
         if (!supportedApplicationListener) {
+
             export();
         }
     }
@@ -334,6 +336,7 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
     @Override
     public void export() {
         super.export();
+        System.err.println(getInterface() + " exportied..");
         // Publish ServiceBeanExportedEvent
         publishExportEvent();
     }
