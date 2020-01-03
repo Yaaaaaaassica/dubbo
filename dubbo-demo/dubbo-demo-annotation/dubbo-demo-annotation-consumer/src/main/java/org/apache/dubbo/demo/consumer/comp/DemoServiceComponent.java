@@ -37,6 +37,11 @@ public class DemoServiceComponent implements DemoService {
     @Override
     public String sayHello(String name) {
         return
-               new Random().nextBoolean()? demoService.sayHello(name): demoService2.sayHello(name);
+                new Random().nextBoolean() ? demoService.sayHello(name) : demoService2.sayHello(name);
+    }
+
+    @Override
+    public String sayHi(String name) {
+        return demoService.sayHi(name);
     }
 }

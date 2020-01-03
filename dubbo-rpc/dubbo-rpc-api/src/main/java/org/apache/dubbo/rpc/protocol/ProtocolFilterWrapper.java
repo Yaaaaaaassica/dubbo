@@ -142,7 +142,7 @@ public class ProtocolFilterWrapper implements Protocol {
      * If bridging status between filters is proved to not has significant performance drop, consider revert to the following commit:
      * https://github.com/apache/dubbo/pull/4127
      */
-    static class CallbackRegistrationInvoker<T> implements Invoker<T> {
+   public static class CallbackRegistrationInvoker<T> implements Invoker<T> {
 
         private final Invoker<T> filterInvoker;
         private final List<Filter> filters;

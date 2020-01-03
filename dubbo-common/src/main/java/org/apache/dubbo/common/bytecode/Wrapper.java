@@ -454,5 +454,5 @@ public abstract class Wrapper {
      * @param args     argument array.
      * @return return value.
      */
-    abstract public Object invokeMethod(Object instance, String mn, Class<?>[] types, Object[] args) throws NoSuchMethodException, InvocationTargetException;
+    abstract public Object invokeMethod(Object instance, String mn, Class<?>[] types, Object[] args) throws NoSuchMethodException, InvocationTargetException, java.lang.NoSuchMethodException;
 }

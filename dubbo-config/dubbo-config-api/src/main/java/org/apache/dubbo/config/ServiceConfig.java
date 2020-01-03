@@ -321,7 +321,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
             } catch (ClassNotFoundException e) {
                 throw new IllegalStateException(e.getMessage(), e);
             }
-            checkInterfaceAndMethods(interfaceClass, methods);
+
             checkRef();
             generic = Boolean.FALSE.toString();
         }
@@ -586,7 +586,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
                         }
                         url = url.addParameterIfAbsent(DYNAMIC_KEY, registryURL.getParameter(DYNAMIC_KEY));
                         URL monitorUrl = loadMonitor(registryURL);
-                        if (monitorUrl != null) {
+                         if (monitorUrl != null) {
                             url = url.addParameterAndEncoded(MONITOR_KEY, monitorUrl.toFullString());
                         }
                         if (logger.isInfoEnabled()) {
@@ -602,7 +602,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
                         if (StringUtils.isNotEmpty(proxy)) {
                             registryURL = registryURL.addParameter(PROXY_KEY, proxy);
                         }
-
+                        // fixme  dubbo core
                         Invoker<?> invoker = PROXY_FACTORY.getInvoker(ref, (Class) interfaceClass, registryURL.addParameterAndEncoded(EXPORT_KEY, url.toFullString()));
                         DelegateProviderMetaDataInvoker wrapperInvoker = new DelegateProviderMetaDataInvoker(invoker, this);
 
@@ -968,7 +968,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
     public void setRef(T ref) {
 
 
-        logger.warn("Dubbo 注入 bean {}",ref);
+        logger.warn("Dubbo 注入 ref bean {}",ref);
         this.ref = ref;
     }
 
