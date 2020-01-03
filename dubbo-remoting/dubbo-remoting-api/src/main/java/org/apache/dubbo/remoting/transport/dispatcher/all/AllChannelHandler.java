@@ -16,7 +16,8 @@
  */
 package org.apache.dubbo.remoting.transport.dispatcher.all;
 
-import lombok.extern.slf4j.Slf4j;
+
+
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.remoting.Channel;
 import org.apache.dubbo.remoting.ChannelHandler;
@@ -27,11 +28,16 @@ import org.apache.dubbo.remoting.exchange.Response;
 import org.apache.dubbo.remoting.transport.dispatcher.ChannelEventRunnable;
 import org.apache.dubbo.remoting.transport.dispatcher.ChannelEventRunnable.ChannelState;
 import org.apache.dubbo.remoting.transport.dispatcher.WrappedChannelHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.RejectedExecutionException;
-@Slf4j
+
 public class AllChannelHandler extends WrappedChannelHandler {
+
+    private static final Logger log= LoggerFactory.getLogger(AllChannelHandler.class);
+
 
     public AllChannelHandler(ChannelHandler handler, URL url) {
         super(handler, url);
