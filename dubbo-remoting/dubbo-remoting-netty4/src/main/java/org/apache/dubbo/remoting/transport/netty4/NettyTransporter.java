@@ -37,7 +37,7 @@ public class NettyTransporter implements Transporter {
 
     @Override
     public Server bind(URL url, ChannelHandler listener) throws RemotingException {
-        logger.info("[start to bing dubbo] ..");
+        logger.info("[start to bind dubbo] ..");
         return new NettyServer(url, listener);
     }
 

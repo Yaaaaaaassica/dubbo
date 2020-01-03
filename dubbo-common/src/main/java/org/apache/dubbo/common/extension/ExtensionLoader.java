@@ -465,7 +465,7 @@ public class ExtensionLoader<T> {
                         try {
 
                             instance = createAdaptiveExtension();
-                            logger.info("[ SPI ] 获取拓展类 {}", instance);
+                            logger.info("[SPI] Adaptive获取拓展类 {}", instance);
                             cachedAdaptiveInstance.set(instance);
                         } catch (Throwable t) {
                             createAdaptiveInstanceError = t;
@@ -625,6 +625,8 @@ public class ExtensionLoader<T> {
         loadDirectory(extensionClasses, DUBBO_DIRECTORY, type.getName().replace("org.apache", "com.alibaba"));
         loadDirectory(extensionClasses, SERVICES_DIRECTORY, type.getName());
         loadDirectory(extensionClasses, SERVICES_DIRECTORY, type.getName().replace("org.apache", "com.alibaba"));
+
+        logger.info("[SPI] 获取扩展类 {} {}",type,extensionClasses);
         return extensionClasses;
     }
 
@@ -695,6 +697,7 @@ public class ExtensionLoader<T> {
                                 loadClass(extensionClasses, resourceURL, Class.forName(line, true, classLoader), name);
                             }
                         } catch (Throwable t) {
+                            logger.error("exception={}",t.getMessage());
                             IllegalStateException e = new IllegalStateException("Failed to load extension class (interface: " + type + ", class line: " + line + ") in " + resourceURL + ", cause: " + t.getMessage(), t);
                             exceptions.put(line, e);
                         }
@@ -780,7 +783,7 @@ public class ExtensionLoader<T> {
      * cache Adaptive class which is annotated with <code>Adaptive</code>
      */
     private void cacheAdaptiveClass(Class<?> clazz) {
-        if (cachedAdaptiveClass == null) {
+        if (cachedAdaptiveClass == null) { // 独占模式，返回的是第一个adative
             cachedAdaptiveClass = clazz;
         } else if (!cachedAdaptiveClass.equals(clazz)) {
             throw new IllegalStateException("More than 1 adaptive class found: "
@@ -842,6 +845,7 @@ public class ExtensionLoader<T> {
         if (cachedAdaptiveClass != null) {
             return cachedAdaptiveClass;
         }
+        logger.info("获取扩展类cachedAdaptiveClass {}",cachedActivates);
         return cachedAdaptiveClass = createAdaptiveExtensionClass();
     }
 
@@ -856,5 +860,7 @@ public class ExtensionLoader<T> {
     public String toString() {
         return this.getClass().getName() + "[" + type.getName() + "]";
     }
+
+
 
 }

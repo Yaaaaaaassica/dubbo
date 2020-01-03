@@ -15,7 +15,7 @@ public class ZkStandalone {
     public static void main(String[] args) throws IOException, QuorumPeerConfig.ConfigException {
 
 
-        new File("/tmp").deleteOnExit();
+        new File("/tmp/zookeeper").deleteOnExit();
 
         QuorumPeerConfig config = new QuorumPeerConfig();
         InputStream is = ZkStandalone.class.getResourceAsStream("/zookeeper.properties");
