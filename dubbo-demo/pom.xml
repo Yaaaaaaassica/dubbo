@@ -34,6 +34,7 @@
         <module>dubbo-demo-annotation</module>
         <module>dubbo-demo-api</module>
         <module>zk</module>
+        <module>internal-test</module>
     </modules>
 
     <dependencyManagement>
