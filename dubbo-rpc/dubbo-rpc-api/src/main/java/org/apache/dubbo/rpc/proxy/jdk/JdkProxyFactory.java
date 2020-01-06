@@ -16,11 +16,14 @@
  */
 package org.apache.dubbo.rpc.proxy.jdk;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.rpc.Invoker;
 import org.apache.dubbo.rpc.proxy.AbstractProxyFactory;
 import org.apache.dubbo.rpc.proxy.AbstractProxyInvoker;
 import org.apache.dubbo.rpc.proxy.InvokerInvocationHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -29,6 +32,8 @@ import java.lang.reflect.Proxy;
  * JdkRpcProxyFactory
  */
 public class JdkProxyFactory extends AbstractProxyFactory {
+
+    private static final Logger log= LoggerFactory.getLogger(JdkProxyFactory.class);
 
     @Override
     @SuppressWarnings("unchecked")
@@ -44,6 +49,7 @@ public class JdkProxyFactory extends AbstractProxyFactory {
                                       Class<?>[] parameterTypes,
                                       Object[] arguments) throws Throwable {
                 Method method = proxy.getClass().getMethod(methodName, parameterTypes);
+                log.warn("[provider] method={} proxy={}",method,proxy);
                 return method.invoke(proxy, arguments);
             }
         };

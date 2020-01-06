@@ -604,7 +604,12 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
                         }
                         // fixme  dubbo core
                         Invoker<?> invoker = PROXY_FACTORY.getInvoker(ref, (Class) interfaceClass, registryURL.addParameterAndEncoded(EXPORT_KEY, url.toFullString()));
+                        // 服务端的一个代理，把实际调用封装成一个Invoker 再把invoker 暴露出去
                         DelegateProviderMetaDataInvoker wrapperInvoker = new DelegateProviderMetaDataInvoker(invoker, this);
+
+//                        URL uRL = invoker.getUrl();
+//                        String string2 = string = uRL.getProtocol() == null ? "dubbo" : uRL.getProtocol();
+                        // 这里url的参数为registery 所以为RegistryProtocol
 
                         Exporter<?> exporter = protocol.export(wrapperInvoker);
                         exporters.add(exporter);
